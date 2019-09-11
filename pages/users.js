@@ -2,9 +2,14 @@ import React from 'react';
 import axios from 'axios';
 
 import Link from 'next/link';
+import Head from 'next/head';
+
 
 const User = ({ users }) => (
     <div>
+        <Head>
+            <title>Users</title>
+        </Head>
         <ul>
             { users.map(users => (
                 <li key={users.id}>{users.login}</li>
@@ -12,7 +17,7 @@ const User = ({ users }) => (
         </ul>
 
         <Link href="/">
-            <a>Voltar</a>
+            <a>Back</a>
         </Link>
     </div>
 )
