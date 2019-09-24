@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import Link from 'next/link';
 import Head from 'next/head';
-
+import withAnalytics from '../src/hocs/withAnalytics';
 
 const User = ({ users }) => (
     <div>
@@ -11,8 +11,15 @@ const User = ({ users }) => (
             <title>Users</title>
         </Head>
         <ul>
-            { users.map(users => (
-                <li key={users.id}>{users.login}</li>
+            { users.map(user => (
+                <li key={user.id}>
+
+                    {user.login}
+                    <Link href={`/users/${user.login}`}>
+                        <a>View Profile</a>
+                    </Link>
+
+                </li>
             )) }
         </ul>
 
@@ -30,4 +37,4 @@ User.getInitialProps = async () => {
     return { users: response.data }
 }
 
-export default User;
+export default withAnalytics()(User);
